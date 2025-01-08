@@ -1,0 +1,62 @@
+.verify-container {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100%; 
+}
+
+.verify-card {
+    background: #27374D; 
+    color: #ffffff; 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3); 
+    text-align: center;
+    width: 350px; 
+    height: fit-content; 
+    font-family: 'Inter_Regular';
+}
+
+.verify-card-code-cont {
+    display: flex;
+    gap: 10px;
+    margin: auto;
+    /* padding: 10px; */
+    justify-content: space-between;
+    /* width: fit-content; */
+    /* width: calc(100% - 20px); */
+    /* background: #2a2d39;    */
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.cell_verify {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    background: #3a3f5000;
+    border: 2px solid rgba(255, 255, 255, 0.4 );
+    color: white;
+    transition: .2s;
+}
+.cell_verify::-webkit-outer-spin-button,
+.cell_verify::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.cell_verify:focus {
+    background: #4b5161;
+
+}
+
+@media (max-width: 599px) {
+    .verify-card {
+        width: 80%; 
+    }
+}
