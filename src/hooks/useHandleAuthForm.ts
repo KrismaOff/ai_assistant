@@ -6,7 +6,7 @@ import { FormData } from "@/types";
 
 type useHandleAuthFormReturn = [FormData, (e: React.ChangeEvent<HTMLInputElement>) => void]
 
-export default function useHandleAuthForm(location: Location): useHandleAuthFormReturn {
+export default function useHandleAuthForm(location: Location, type?: string): useHandleAuthFormReturn {
 
     const initialData = useMemo(() => {
         const path = location.pathname.split("/").at(-1) || ""

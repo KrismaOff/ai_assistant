@@ -2,28 +2,59 @@ import { useNavigate } from "react-router-dom";
 import { sendRequest } from "@/utils/sendRequest";
 import { FormData } from "@/types";
 
-export default function useHandleAuthResponse(path: string): [(data: FormData, type: string) => void] {
+import { ROUTES, buildPath } from "@/assets/data/paths";
+import { constats } from "@/assets/data/constants";
+
+export default function useHandleAuthResponse(
+  path: string
+): [(data: FormData, type: string) => void] {
   const navigate = useNavigate();
 
-  const handleCallback = (res: any, type: string): void => {
+  const {
+    AUTH,
+    PROFILE,
+    AUTH: {
+      child: { LOGIN, REGISTER, VERIFY, FORGOTPASSWORD },
+    },
+  } = ROUTES;
+
+  const { tempToken, token, resetPassword } = constats;
+
+  const tokenCheck = (): string | undefined => {
+    return localStorage.getItem(token) || localStorage.getItem(tempToken);
+  };
+
+  const handleCallback = (res: any, type: string, data?: string): void => {
     if (!res) return;
 
     switch (type) {
-      case "reg":
-        localStorage.setItem("tempToken", res.temp_token);
-        navigate("/auth/verify");
+      case REGISTER:
+        localStorage.setItem(tempToken, res.temp_token);
+        navigate(buildPath(AUTH.root, VERIFY));
         break;
-      case "log":
-        // localStorage.removeItem("tempToken");
-        localStorage.setItem("token", res.access_token);
-        navigate("/profile");
+      case LOGIN:
+        // localStorage.removeItem(tempToken);
+        localStorage.setItem(token, res.access_token);
+        navigate(buildPath(PROFILE.root));
         break;
-      case "verify":
+      case VERIFY:
         alert(res.message);
-        localStorage.removeItem("tempToken");
-        localStorage.setItem("token", res.access_token);
-        navigate("/profile");
+        localStorage.removeItem(tempToken);
+        localStorage.setItem(token, res.access_token);
+        navigate(buildPath(PROFILE.root));
         break;
+      case FORGOTPASSWORD.root:
+        alert(res.message);
+        localStorage.setItem(resetPassword, data);
+        navigate(buildPath(AUTH.root, FORGOTPASSWORD.root, FORGOTPASSWORD.child.CODE));
+        break;
+      case FORGOTPASSWORD.child.CODE:
+        alert(res.message);
+        localStorage.removeItem(resetPassword);
+        navigate(buildPath(AUTH.root, LOGIN));
+        window.location.reload()
+        break;
+
       default:
         console.warn(`Неизвестный тип: ${type}`);
     }
@@ -38,11 +69,8 @@ export default function useHandleAuthResponse(path: string): [(data: FormData, t
 
     sendRequest({
       ...mods,
-      token:
-        type === "verify"
-          ? localStorage.getItem("tempToken")
-          : undefined,
-      callback: (res: any) => handleCallback(res, type),
+      token: tokenCheck(),
+      callback: (res: any) => handleCallback(res, type, data.email),
     });
   };
 

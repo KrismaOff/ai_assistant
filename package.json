@@ -1,4 +1,5 @@
 {
+  "homepage": "https://KrismaOff.github.io/ai_assistant",
   "name": "ai_assistant",
   "version": "0.1.0",
   "private": true,
@@ -13,7 +14,9 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test"
+    "test": "react-app-rewired test",
+    "deploy": "gh-pages -d build",
+    "b_deploy": "react-app-rewired build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -35,7 +38,7 @@
   },
   "devDependencies": {
     "customize-cra": "^1.0.0",
-    "ng-pages": "^1.0.1",
+    "gh-pages": "^6.3.0",
     "react-app-rewired": "^2.2.1"
   }
 }

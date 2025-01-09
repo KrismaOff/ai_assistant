@@ -8,7 +8,13 @@ type sendRequestProps = {
   callback?: (responseData: any) => void;
 };
 
-export const sendRequest = async ({ method, path, data, token, callback }: sendRequestProps): Promise<void> => {
+export const sendRequest = async ({
+  method,
+  path,
+  data,
+  token,
+  callback,
+}: sendRequestProps): Promise<void> => {
   try {
     const response = await axios({
       method: method,
@@ -16,12 +22,12 @@ export const sendRequest = async ({ method, path, data, token, callback }: sendR
       data: data,
       headers: {
         "Content-Type": "application/json",
-        ...(token && { "Authorization": `Bearer ${token}` })
-    },
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
     });
     callback?.(response.data);
   } catch (error) {
     console.error("Ошибка запроса:", error.response?.data || error.message);
-    if (error.response?.data) alert(error.response?.data.detail)
+    if (error.response?.data) alert(error.response?.data.detail);
   }
 };

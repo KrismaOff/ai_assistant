@@ -1,36 +1,48 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: linear-gradient(180deg, #526D82, #222c33);
+  background: linear-gradient(180deg, #526d82, #222c33);
 }
 
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @font-face {
-    font-family: Inter_Light;
-    src: url('@/assets/fonts/Inter_LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
+  font-family: Inter_Light;
+  src: url("@/assets/fonts/Inter_LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: Inter_Thin;
-    src: url('@/assets/fonts/Inter_ThinItalic.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
+  font-family: Inter_Thin;
+  src: url("@/assets/fonts/Inter_ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: Inter_Regular;
-    src: url('@/assets/fonts/Inter_Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: Inter_Regular;
+  src: url("@/assets/fonts/Inter_Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }

@@ -6,105 +6,52 @@ import useHandleAuthForm from "@/hooks/useHandleAuthForm"
 import useHandleAuthResponse from "@/hooks/useHandleAuthResponse";
 import "./AuthForm.css";
 
+import { formsContent } from "@/assets/data/formsContent";
+import { ROUTES } from "@/assets/data/paths";
+import { constats } from "@/assets/data/constants";
+
 interface Props {
-  isRegister: boolean;
+  type: string;
 }
 
-const AuthForm = ({ isRegister }: Props) => {
+const AuthForm = ({ type }: Props) => {
+
+  const { content, inputs, buttons, path } = formsContent[type]
 
   const location = useLocation();
 
-  const [data, handleChange] = useHandleAuthForm(location)
-  const [submit] = useHandleAuthResponse(location.pathname.split('/').at(-1))
+  const [data, handleChange] = useHandleAuthForm(location, type)
+  const [submit] = useHandleAuthResponse(path)
 
-  const formInputsData = {
-    first_name: {
-      attr: {
-        type: "text",
-        id: "first_name",
-        name: "first_name",
-        placeholder: "Имя",
-        required: true,
-      },
-      isRegister: true,
-    },
-    last_name: {
-      attr: {
-        type: "text",
-        id: "last_name",
-        name: "last_name",
-        placeholder: "Фамилия",
-        required: true,
-      },
-      isRegister: true,
-    },
-    email: {
-      attr: {
-        type: "email",
-        id: "email",
-        name: "email",
-        placeholder: "Email",
-        autoComplete: "off",
-        required: true,
-      },
-      isRegister: false,
-    },
-    password: {
-      attr: {
-        type: "password",
-        id: "password",
-        name: "password",
-        placeholder: "Пароль",
-        autoComplete: "off",
-        required: true,
-      },
-      isRegister: false,
-    },
-  };
-
-  const authButtonsData = {
-    submit: {
-      text: isRegister ? "Зарегистрироваться" : "Войти",
-      style: {
-        background: "#007bff",
-        color: "#ffffff",
-      },
-      hover: { background: "#0056b3" },
-    },
-  };
-
-  const contentOfPage = {
-    title: isRegister ? "Регистрация" : "Вход в систему",
-    buttonText: isRegister ? "Войти" : "Зарегистрируйтесь",
-    redirectText: isRegister ? "Ещё нет аккаунта?" : "Уже есть аккаунт?",
-    redirectLink: isRegister ? "/auth/login" : "/auth/register",
-  };
-
-  const typeOfPage = isRegister ? "reg" : "log"
+  const submitForm = () => {
+    if (type !== ROUTES.AUTH.child.FORGOTPASSWORD.child.CODE) submit(data, type)
+    else {
+      if (data.check === data.password) {
+        const processedData = {
+          email: localStorage.getItem(constats.resetPassword),
+          new_password: data.password,
+          code: data.code
+        }
+        submit(processedData, type);
+      } else alert("Пароли не совпадают")
+    }
+  }
 
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h1>{contentOfPage.title}</h1>
-        <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); submit(data, typeOfPage); }}>
-          {Object.entries(formInputsData).map(([key, props]) => {
-            if (!isRegister && props.isRegister) return null;
-            return <input onChange={handleChange} key={key} {...props.attr} />;
-          })}
-          <ButtonWithIcon {...authButtonsData.submit}/>
+        <h1>{content.title}</h1>
+        <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); submitForm(); }}>
+          {Object.entries(inputs).map(([key, attr]: [string, object]) => <input onChange={handleChange} key={key} {...attr} />)}
+          {Object.values(buttons).map((attr, i) => <span key={i}><ButtonWithIcon {...attr}/></span>)}
         </form>
-
-        <p>
-          {contentOfPage.redirectText}{" "}
-          <Link to={contentOfPage.redirectLink}>
-            {contentOfPage.buttonText}
-          </Link>
-        </p>
-        <p>
-          <Link to={"/"}>
-          Забыли пароль?
-          </Link>
-        </p>
+        {(content.redirectText || content.redirectLink) && <p>
+          {content.redirectText}{" "}
+          <Link to={content.redirectLink}>{content.button}</Link>
+        </p>}
+        {(content.forgotPasswordText || content.forgotPasswordLink) && <p>
+          <Link to={content.forgotPasswordLink}>{content.forgotPasswordText}</Link>
+        </p>}
       </div>
     </div>
   );

@@ -1,16 +1,23 @@
 import React, { useRef, useState } from "react";
-import { useLocation } from 'react-router-dom'
 import ButtonWithIcon from "@/components/templates/ButtonWithIcon/ButtonWithIcon";
 import useHandleAuthResponse from "@/hooks/useHandleAuthResponse";
 import { FormData } from "@/types";
 import "./VerifyForm.css";
 
-const VerifyForm = () => {
+import { verifyContent } from "@/assets/data/formsContent";
 
-  const location = useLocation();
+import { ROUTES } from "@/assets/data/paths";
+
+interface Props {
+  type: string;
+}
+
+const VerifyForm = ({ type }: Props) => {
+
+    const { content, buttons, path } = verifyContent[type]
 
   const [localStateCode, setLocalStateCode] = useState({})
-  const [submit] = useHandleAuthResponse(location.pathname.split('/').at(-1))
+  const [submit] = useHandleAuthResponse(path)
 
   const inputsRef = useRef<HTMLInputElement[]>([]);
 
@@ -27,27 +34,14 @@ const VerifyForm = () => {
       Object.values(localStateCode).every((val: string) => val.trim() !== "" && val.length === 1)
     ) {
       const object = { code: Object.values(localStateCode).join("") };
-      submit(object, "verify");
+      submit(object, ROUTES.AUTH.child.VERIFY);
     } else alert("Неверный формат кода");
   };
-
-  const authButtonsData = {
-    submit: {
-      text: "Проверить код",
-      type: "submit",
-      style: {
-        background: "#007bff",
-        color: "#ffffff",
-      },
-      hover: { background: "#0056b3" },
-    },
-  };
-
 
   return (
     <div className="verify-container">
       <div className="verify-card">
-        <h1>Введите код</h1>
+        <h1>{content.title}</h1>
         <form 
           onSubmit={(e: React.FormEvent<HTMLFormElement>) => { 
             e.preventDefault(); 
@@ -68,7 +62,7 @@ const VerifyForm = () => {
               />
             ))}
           </div>
-          <ButtonWithIcon {...authButtonsData.submit} />
+          <ButtonWithIcon {...buttons.submit} />
         </form>
       </div>
     </div>
