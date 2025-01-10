@@ -38,6 +38,9 @@ const VerifyForm = ({ type }: Props) => {
     } else alert("Неверный формат кода");
   };
 
+  console.log(buttons);
+  
+
   return (
     <div className="verify-container">
       <div className="verify-card">
@@ -62,7 +65,8 @@ const VerifyForm = ({ type }: Props) => {
               />
             ))}
           </div>
-          <ButtonWithIcon {...buttons.submit} />
+          {/* <ButtonWithIcon {...buttons.submit} /> */}
+          {Object.values(buttons).map((attr, i) => <span key={i}><ButtonWithIcon {...attr}/></span>)}
         </form>
       </div>
     </div>

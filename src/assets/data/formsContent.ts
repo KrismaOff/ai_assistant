@@ -164,18 +164,15 @@ export const verifyContent = {
         text: "Проверить код",
         ...commonButtonStyles,
       },
-    }
-  },
-  // [FORGOTPASSWORD.child.CODE]: {
-  //   path: FORGOTPASSWORD.child.CODE,
-  //   content: {
-  //     title: "Введите код",
-  //   },
-  //   buttons: {
-  //     submit: {
-  //       text: "Проверить код",
-  //       ...commonButtonStyles,
-  //     },
-  //   }
-  // },
+      cancel: {
+        text: "Вернуться назад",
+        type: "button",
+        click: () => {
+          localStorage.removeItem(constats.tempToken)
+          window.location.reload()
+        },
+        ...commonButtonStyles,
+      }
+    },
+  }
 };
