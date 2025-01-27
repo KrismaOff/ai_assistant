@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { sendRequest } from "@/utils/sendRequest";
-import { FormData } from "@/types";
+import { tokenCheck } from "@/utils/tokenCheck";
 
+import { FormData } from "@/types";
 import { ROUTES, buildPath } from "@/assets/data/paths";
 import { constats } from "@/assets/data/constants";
 
-export default function useHandleAuthResponse(
-  path: string
-): [(data: FormData, type: string) => void] {
+export default function useHandleAuthResponse(path: string): [(data: FormData, type: string) => void] {
   const navigate = useNavigate();
 
   const {
@@ -19,10 +18,6 @@ export default function useHandleAuthResponse(
   } = ROUTES;
 
   const { tempToken, token, resetPassword } = constats;
-
-  const tokenCheck = (): string | undefined => {
-    return localStorage.getItem(token) || localStorage.getItem(tempToken);
-  };
 
   const handleCallback = (res: any, type: string, data?: string): void => {
     if (!res) return;

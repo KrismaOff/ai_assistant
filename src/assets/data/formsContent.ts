@@ -42,6 +42,12 @@ const commonButtonStyles = {
   hover: { background: "#0056b3" },
 };
 
+const commontButtonCancel = {
+    text: "Вернуться назад",
+    type: "button",
+    ...commonButtonStyles,
+}
+
 const {
   AUTH: {
     root,
@@ -82,7 +88,7 @@ export const formsContent = {
       title: "Регистрация",
       button: "Войти",
       redirectText: "Уже есть аккаунт?",
-      redirectLink: buildPath(ROUTES.AUTH.root, ROUTES.AUTH.child.LOGIN),
+      redirectLink: buildPath(root, ROUTES.AUTH.child.LOGIN),
     },
     inputs: {
       ...commonInputs,
@@ -107,6 +113,13 @@ export const formsContent = {
         text: "Отправить код на почту",
         ...commonButtonStyles,
       },
+      cancel: {
+        click: () => {
+          localStorage.removeItem(constats.resetPassword)
+          window.location.href = buildPath(root, LOGIN);
+        },
+        ...commontButtonCancel,
+      }
     },
   },
   [FORGOTPASSWORD.child.CODE]: {
@@ -141,13 +154,11 @@ export const formsContent = {
         ...commonButtonStyles,
       },
       cancel: {
-        text: "Вернуться назад",
-        type: "button",
         click: () => {
           localStorage.removeItem(constats.resetPassword)
           window.location.reload()
         },
-        ...commonButtonStyles,
+        ...commontButtonCancel,
       }
     },
   }

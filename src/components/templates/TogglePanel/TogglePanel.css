@@ -1,0 +1,60 @@
+
+.profile-settings-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 30px);
+    background: #29323a;
+    padding: 15px;
+    transition: .2s;
+}
+
+.profile-settings-button p {
+    font-size: 20px;
+}
+
+.profile-settings-button img {
+    width: 30px;
+    transition: .2s;
+}
+
+.first {
+    border-radius: 15px 15px 0 0;
+
+}
+
+.last {
+    border-radius: 0 0 15px 15px;
+}
+
+.profile-settings-button:hover {
+    background: #20262c;
+}
+
+.ah-panel {
+    margin-top: 2px;
+    overflow: hidden;
+    transition: height .2s ease-out;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+    background: #29323a;
+}
+
+.hidden-panel {
+    height: 0;
+}
+
+.active-panel {
+    height: 50px;
+}
+
+
+.link-img {
+    width: 30px;
+}
+.link-conmp {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}

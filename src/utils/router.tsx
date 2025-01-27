@@ -5,12 +5,15 @@ import App from "@/components/pages/App/App";
 import AuthForm from "@/components/pages/AuthForm/AuthForm";
 import VerifyForm from "@/components/pages/VerifyForm/VerifyForm";
 import Profile from "@/components/pages/Profile/Profile";
+import ParentPage from "@/components/pages/ParentPage/ParentPage";
+import ChatPage from "@/components/pages/ChatPage/ChatPage";
 
 import AuthGuard from "@/components/layout/AuthGuard/AuthGuard";
 
 import { ROUTES } from "@/assets/data/paths";
 
 const {
+  CHAT,
   AUTH,
   HOME,
   PROFILE,
@@ -60,8 +63,17 @@ export const router = createBrowserRouter([
             ],
           },
           {
-            path: PROFILE.root,
-            element: <Profile />,
+            element: <ParentPage />,
+            children: [
+              {
+                path: PROFILE.root,
+                element: <Profile type={PROFILE.root}/>,
+              },
+              {
+                path: CHAT.root,
+                element: <ChatPage/>,
+              },
+            ]
           },
         ],
       },

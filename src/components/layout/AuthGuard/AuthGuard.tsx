@@ -29,9 +29,8 @@ const AuthGuard = () => {
 
   const loginPath = buildPath(AUTH, LOGIN)
   const verifyPath = buildPath(AUTH, VERIFY)
-  const emailPath = buildPath(AUTH, FORGOTPASSWORD.root, EMAIL)
+  // const emailPath = buildPath(AUTH, FORGOTPASSWORD.root, EMAIL)
   const codePath = buildPath(AUTH, FORGOTPASSWORD.root, CODE)
-
 
   const path = location.pathname.split('/').at(-1)
 
@@ -41,10 +40,10 @@ const AuthGuard = () => {
 
   // Authentication checks
   if (!token && !authPages.includes(path)) return <Navigate to={loginPath} replace />;
-  if (token && authPages.includes(path)) return <Navigate to={PROFILE} replace />;
+  if (token && authPages.filter(v => v !== CODE).includes(path)) return <Navigate to={PROFILE} replace />;
 
   // Forgot Password checks
-  if (!resetPassword && path === CODE) return <Navigate to={emailPath} replace />;
+  if (!resetPassword && path === CODE) return <Navigate to={PROFILE} replace />;
   if (resetPassword && path !== CODE) return <Navigate to={codePath} replace />;
   
 

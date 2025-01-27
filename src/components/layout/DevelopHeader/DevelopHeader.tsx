@@ -12,7 +12,7 @@ const DevelopHeader = () => {
   const PROFILE = ROUTES.PROFILE.root
   const HOME = ROUTES.HOME.root
 
-  const [visible, setVisible] = useState<boolean>(true)
+  const [visible, setVisible] = useState<boolean>(false)
 
   const clearLocalStorage = () => {
     localStorage.clear()
@@ -27,10 +27,17 @@ const DevelopHeader = () => {
     window.location.reload()
   }
 
+  const handleRP = (type: string) => {
+    if (localStorage.getItem(constats[type])) localStorage.removeItem(constats[type])
+    else localStorage.setItem(constats[type], "email@mail.ru")
+    window.location.reload()
+  }
+
   return (
     <div className="DevelopHeader">
       <button onClick={handleVisible}>{visible ? "Скрыть" : "Показать"} DevelopHeader</button>
       {visible && <>
+        <button onClick={() => handleRP(constats.resetPassword)}>resetPassword</button>
         <button onClick={() => handleToken(constats.tempToken)}>tempToken</button>
         <button onClick={() => handleToken(constats.token)}>token</button>
         <button onClick={clearLocalStorage}>Очистить localStorage</button>

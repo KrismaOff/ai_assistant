@@ -1,9 +1,11 @@
 import axios from "axios";
 
+import { removeToken } from "./tokenCheck";
+
 type sendRequestProps = {
   method: string;
   path: string;
-  data: object;
+  data?: object;
   token?: string;
   callback?: (responseData: any) => void;
 };
@@ -27,7 +29,12 @@ export const sendRequest = async ({
     });
     callback?.(response.data);
   } catch (error) {
-    console.error("Ошибка запроса:", error.response?.data || error.message);
-    if (error.response?.data) alert(error.response?.data.detail);
+    console.log(error);
+
+    if (error.response?.data.detail === "401") removeToken();
+    else {
+      console.error("Ошибка запроса:", error.response?.data || error.message);
+      if (error.response?.data) alert(error.response?.data.detail);
+    }
   }
 };

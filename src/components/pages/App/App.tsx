@@ -1,17 +1,22 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import { Outlet } from 'react-router-dom';
-import DevelopHeader from '@/components/layout/DevelopHeader/DevelopHeader';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import { Outlet } from "react-router-dom";
+import DevelopHeader from "@/components/layout/DevelopHeader/DevelopHeader";
+
+const theme = createTheme();
 
 function App() {
   return (
     <div className="App">
-      <DevelopHeader/>
-      <Outlet/>
+      <ThemeProvider theme={theme}>
+        <DevelopHeader />
+        <Outlet />
+      </ThemeProvider>
     </div>
   );
 }
 
 export default App;
-

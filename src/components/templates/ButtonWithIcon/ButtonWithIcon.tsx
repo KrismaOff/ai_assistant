@@ -3,7 +3,7 @@ import "./ButtonWithIcon.css";
 
 interface Props {
   text: string;
-  type?: string;
+  type?: any;
   icon?: string;
   style?: {
     background: string;

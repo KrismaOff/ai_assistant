@@ -1,0 +1,108 @@
+.modal-box {
+  font-family: Inter_Regular;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 450px;
+  background: #2A3B47;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  outline: none;
+  position: relative;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.btn-pro-link {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  background-color: #ffcc66;
+  color: #000;
+  text-decoration: none;
+  padding: 20px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-pro-link:hover {
+  background-color: #bb964c;
+  transform: scale(1.05);
+}
+
+.btn-pro {
+  width: 100%;
+  background-color: #ffcc66;
+  color: #000;
+  border: none;
+  padding: 20px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-pro:hover {
+  background-color: #bb964c;
+  transform: scale(1.05);
+}
+
+.link-banner-tg {
+  text-decoration: none;
+  color: rgb(93, 93, 226);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Расстояние между логотипом и заголовком */
+}
+
+.banner-logo {
+  width: 150px; /* Увеличиваем размер логотипа */
+  height: auto;
+  object-fit: contain;
+}
+
+#banner-modal-title {
+  font-weight: bolder;
+  text-align: center;
+}
+
+#banner-modal-end {
+  font-weight: bolder;
+  text-align: center;
+  font-family: "Inter_Regular";
+  font-style: italic;
+}
+
+@media (max-width: 599px) {
+  .modal-box {
+    width: 80%;
+  }
+
+  .banner-logo {
+    width: 120px; /* Логотип чуть меньше на мобильных */
+  }
+
+  #banner-modal-title {
+    font-size: 14px; /* Уменьшаем текст на мобильных */
+  }
+
+  #banner-modal-end {
+    font-size: 12px; /* Уменьшаем текст на мобильных */
+  }
+}

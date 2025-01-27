@@ -1,4 +1,4 @@
-import { React, useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Location } from "react-router-dom";
 import { templateForRequest } from '@/assets/data/templateOfRequest'
 
@@ -22,3 +22,4 @@ export default function useHandleAuthForm(location: Location, type?: string): us
 
     return [data, handleChange];
 }
+

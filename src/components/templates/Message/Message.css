@@ -1,0 +1,28 @@
+/* Сообщения пользователей и ассистента */
+.message {
+    text-align: left;
+    padding: 20px;
+    font-size: 20px;
+    word-wrap: break-word;
+}
+
+.user-message {
+    align-self: flex-end;
+    max-width: 60%;
+    padding: 20px;
+    border-radius: 25px 25px 25px 5px;
+    background: rgba(0, 0, 0, 0.247);
+    color: rgb(197, 197, 197);
+    border-radius: 25px 25px 5px;
+    text-align: left;
+}
+
+.assistant-message {
+    max-width: 60%;
+    align-self: flex-start;
+    text-align: left;
+    padding: 20px;
+    border-radius: 25px 25px 25px 5px;
+    background: rgba(0, 0, 0, 0.247);
+    color: rgb(197, 197, 197);
+}

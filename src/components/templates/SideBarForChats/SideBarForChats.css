@@ -1,0 +1,87 @@
+/* Основной контейнер боковой панели */
+.chat-sidebar {
+    width: 30%;
+    background: #1c2833;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Список чатов */
+  .chat-sidebar-chats {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .chat-sidebar-newchat .btn-pro {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .chat-sidebar-newchat h1 {
+    text-align: left;
+    margin: 40px 0;
+  }
+  
+  /* Заголовок списка чатов */
+  .chat-list-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .chat-list-title button {
+    border: none;
+    background: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .chat-list-items-cont {
+    overflow-y: auto;
+    height: 50vh;
+    overflow: auto;
+    scrollbar-width: none; /* Для Firefox */
+  }
+  .chat-list-items-cont::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari */
+}
+
+  /* Элементы списка чатов */
+  #chat-list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #chat-list-items li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #3e4852;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  
+  #chat-list-items li:hover {
+    background: #586674;
+  }
+  
+  #chat-list-items li img {
+    width: 30px;
+  }
+  
+
+  @media (max-width: 599px) {
+    .chat-sidebar {
+      width: 100%;
+    }
+  }
