@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Chat.css";
 
 import Message from "../Message/Message";
@@ -17,8 +17,13 @@ interface Props {
 }
 
 export default function Chat({ changePage, currentChat, onStartNewChat }: Props) {
-  const {messages, setMessages, sendMessage} = useRecieveAndSendMessages(currentChat);
+  const { messages, setMessages, sendMessage } = useRecieveAndSendMessages(currentChat);
   const [inputValue, setInputValue] = useState("");
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
@@ -27,7 +32,7 @@ export default function Chat({ changePage, currentChat, onStartNewChat }: Props)
       setMessages((prev) => [
         ...(prev || []),
         { role: "user", content: inputValue, created_at: new Date().toISOString() },
-      ]); 
+      ]);
       setInputValue("");
     } else {
       alert("Перед отправкой введите сообщение!");
@@ -50,6 +55,7 @@ export default function Chat({ changePage, currentChat, onStartNewChat }: Props)
           messages.map((message, index) => (
             <Message key={index} text={message.content} role={message.role} />
           ))}
+        <div ref={chatEndRef} />
       </div>
 
       <div className="search-container">
