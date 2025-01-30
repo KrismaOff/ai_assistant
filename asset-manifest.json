@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ai_assistant/static/css/main.dd45e9eb.css",
-    "main.js": "/ai_assistant/static/js/main.19ea589d.js",
+    "main.css": "/ai_assistant/static/css/main.a92471ee.css",
+    "main.js": "/ai_assistant/static/js/main.d17686ee.js",
     "static/media/Inter_LightItalic.ttf": "/ai_assistant/static/media/Inter_LightItalic.6ae79f83102ed7467a57.ttf",
     "static/media/Inter_ThinItalic.ttf": "/ai_assistant/static/media/Inter_ThinItalic.a0f6c903c4883c420e7d.ttf",
     "static/media/Inter_Regular.ttf": "/ai_assistant/static/media/Inter_Regular.86c330c66f7333ff6202.ttf",
@@ -14,11 +14,11 @@
     "static/media/arrow.svg": "/ai_assistant/static/media/arrow.da139388ab1d1389bc654dc3cdbbccf8.svg",
     "index.html": "/ai_assistant/index.html",
     "static/media/logout.svg": "/ai_assistant/static/media/logout.69aa7f9102c4260cf4123f119b4b4664.svg",
-    "main.dd45e9eb.css.map": "/ai_assistant/static/css/main.dd45e9eb.css.map",
-    "main.19ea589d.js.map": "/ai_assistant/static/js/main.19ea589d.js.map"
+    "main.a92471ee.css.map": "/ai_assistant/static/css/main.a92471ee.css.map",
+    "main.d17686ee.js.map": "/ai_assistant/static/js/main.d17686ee.js.map"
   },
   "entrypoints": [
-    "static/css/main.dd45e9eb.css",
-    "static/js/main.19ea589d.js"
+    "static/css/main.a92471ee.css",
+    "static/js/main.d17686ee.js"
   ]
 }
