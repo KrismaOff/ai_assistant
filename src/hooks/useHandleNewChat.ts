@@ -15,6 +15,8 @@ export default function useHandleProfileRequest() {
       path: "api/new_chat",
       token: tokenCheck(),
       callback: (res) => {
+        console.log(res);
+        
         setCurrentId(res.thread_id);
         setUpdate(false);
       },

@@ -21,7 +21,7 @@ export default function ChatPage() {
   const toggleComponents = (chatId?: string) => {
     if (!isMobile) {
       if (chatId) setCurrentId(chatId);
-      else if (currentId) onStartNewChat()
+      else if (currentId) onStartNewChat()        
     } else {
       setCompVis({
         sidebar: false,

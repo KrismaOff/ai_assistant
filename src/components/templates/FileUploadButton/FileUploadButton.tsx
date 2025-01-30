@@ -41,13 +41,13 @@ export default function FileUploadButton() {
           <AttachFileIcon />
         </Badge>
       </label>
-      <button
+      {/* <button
         onClick={handleUploadClick}
         disabled={isUploading || selectedFiles.length === 0}
         className="upload-button"
       >
         {isUploading ? "Загрузка..." : "Загрузить файл"}
-      </button>
+      </button> */}
     </div>
   );
 }

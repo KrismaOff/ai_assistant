@@ -23,6 +23,9 @@ const SidebarForChats: React.FC<Props> = ({
   onStartNewChat,
   onSelectChat,
 }) => {
+
+  console.log(chats);
+  
   return (
     <div className="chat-sidebar">
       <Banner/>
