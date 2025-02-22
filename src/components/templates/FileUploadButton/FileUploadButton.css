@@ -50,3 +50,27 @@
 .upload-button:hover:not(:disabled) {
   background-color: #7a7b80;
 }
+
+.file-name {
+  /* display: flex; */
+  /* align-items: center; */
+  /* gap: 10px; */
+  width: 100px;
+  
+  display: block;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.file-name-cont {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.file-cross {
+  position: absolute;
+  top: -15px;
+  right: 0;
+}

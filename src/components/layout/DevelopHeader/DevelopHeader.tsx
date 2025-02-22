@@ -9,6 +9,7 @@ const DevelopHeader = () => {
 
   const { LOGIN, REGISTER, VERIFY } = ROUTES.AUTH.child
   const { EMAIL, CODE } = ROUTES.AUTH.child.FORGOTPASSWORD.child
+  const CHAT = ROUTES.CHAT.root
   const PROFILE = ROUTES.PROFILE.root
   const HOME = ROUTES.HOME.root
 
@@ -81,6 +82,11 @@ const DevelopHeader = () => {
             <p>Other</p><hr />
             <p>
               <Link to={buildPath(PROFILE)}>{PROFILE}</Link>{" "}
+              <span className="green">token</span>{" "}
+              {/* <span className="red">tempToken</span> */}
+            </p>
+            <p>
+              <Link to={buildPath(CHAT)}>{CHAT}</Link>{" "}
               <span className="green">token</span>{" "}
               {/* <span className="red">tempToken</span> */}
             </p>

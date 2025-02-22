@@ -9,7 +9,7 @@ export default function useRecieveChats(currentId: string) {
   useEffect(() => {
     sendRequest({
       method: "get",
-      path: "api/threads",
+      path: "chat/threads",
       token: tokenCheck(),
       callback: (res) => setChatsArray(res.threads),
     });

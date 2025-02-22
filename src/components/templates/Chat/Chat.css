@@ -49,9 +49,12 @@
   cursor: pointer;
   border-radius: 50%;
   margin-right: 5px;
+  color: #ffffff;
+  transition: color 0.3s ease;
+  transition: .2s;
 }
 
-.search-icon:hover img {
+.search-icon:hover {
   transform: scale(1.2);
 }
 
@@ -60,7 +63,8 @@
   display: none;
 }
 
-#user-input {
+/* #user-input {
+  font-family: Inter_Regular;
   flex: 1;
   background-color: transparent;
   border: none;
@@ -68,18 +72,11 @@
   color: #ffffff;
   font-size: 16px;
   padding: 8px;
-}
 
+  resize: none;
+  white-space: pre-wrap;
+} */
 
-#message-icon {
-  color: #ffffff;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-#message-icon:hover {
-  color: #5b86ff; /* Подсветка иконки при наведении */
-}
 
 @media (max-width: 599px) {
   .chat-body {

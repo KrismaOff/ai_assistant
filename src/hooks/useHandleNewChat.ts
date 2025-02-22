@@ -12,7 +12,7 @@ export default function useHandleProfileRequest() {
     setUpdate(true);
     sendRequest({
       method: "post",
-      path: "api/new_chat",
+      path: "create_thread",
       token: tokenCheck(),
       callback: (res) => {
         setCurrentId(res.thread_id);

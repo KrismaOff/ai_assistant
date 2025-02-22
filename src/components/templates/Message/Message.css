@@ -9,9 +9,8 @@
 .user-message {
     align-self: flex-end;
     max-width: 60%;
-    padding: 20px;
     border-radius: 25px 25px 25px 5px;
-    background: rgba(0, 0, 0, 0.247);
+    background: rgba(77, 75, 75, 0.247);
     color: rgb(197, 197, 197);
     border-radius: 25px 25px 5px;
     text-align: left;
@@ -21,8 +20,25 @@
     max-width: 60%;
     align-self: flex-start;
     text-align: left;
-    padding: 20px;
     border-radius: 25px 25px 25px 5px;
     background: rgba(0, 0, 0, 0.247);
     color: rgb(197, 197, 197);
+}
+
+.loading-message {
+    padding: 0px 20px;
+    align-self: flex-start;
+    border-radius: 25px 25px 25px 5px;
+    background: rgba(0, 0, 0, 0.247);
+}
+
+.download-file-icon {
+    padding-top: 20px;
+}
+
+.download-file-icon span {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

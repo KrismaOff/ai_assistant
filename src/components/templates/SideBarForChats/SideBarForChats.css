@@ -6,12 +6,30 @@
     color: white;
     display: flex;
     flex-direction: column;
+    /* overflow: hidden; */
   }
   
   /* Список чатов */
   .chat-sidebar-chats {
-    flex: 1;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-list {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-list-items-cont {
+    overflow-y: auto;
+    overflow: auto;
+    scrollbar-width: none; /* Для Firefox */
+  }
+  .chat-list-items-cont::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari */
   }
 
   .chat-sidebar-newchat .btn-pro {
@@ -39,16 +57,6 @@
     font-size: 25px;
     cursor: pointer;
   }
-  
-  .chat-list-items-cont {
-    overflow-y: auto;
-    height: 50vh;
-    overflow: auto;
-    scrollbar-width: none; /* Для Firefox */
-  }
-  .chat-list-items-cont::-webkit-scrollbar {
-    display: none; /* Для Chrome, Safari */
-}
 
   /* Элементы списка чатов */
   #chat-list-items {
@@ -62,13 +70,19 @@
   
   #chat-list-items li {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
     padding: 15px;
     border-radius: 10px;
     background: #3e4852;
-    transition: background 0.2s;
+    transition: 0.2s;
     cursor: pointer;
+    text-align: left;
+  }
+
+  #chat-list-items small {
+    color: #ffffff7a;
   }
   
   #chat-list-items li:hover {
@@ -77,6 +91,12 @@
   
   #chat-list-items li img {
     width: 30px;
+  }
+
+  .chat-list-items-name {
+    display: flex;
+    gap: 20px;
+    align-items: center;
   }
   
 

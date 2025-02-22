@@ -8,6 +8,7 @@ type sendRequestProps = {
   data?: object;
   token?: string;
   callback?: (responseData: any) => void;
+  content?: string;
 };
 
 export const sendRequest = async ({
@@ -16,6 +17,7 @@ export const sendRequest = async ({
   data,
   token,
   callback,
+  content = "application/json",
 }: sendRequestProps): Promise<void> => {
   try {
     const response = await axios({
@@ -23,7 +25,7 @@ export const sendRequest = async ({
       url: process.env.REACT_APP_API_URL + path,
       data: data,
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": content,
         ...(token && { Authorization: `Bearer ${token}` }),
       },
     });
@@ -33,7 +35,7 @@ export const sendRequest = async ({
 
     if (error.response?.data.detail === "401") removeToken();
     else {
-      console.error("Ошибка запроса:", error.response?.data || error.message);
+      console.error("Ошибка запроса:", error.response?.data || error.message, process.env.REACT_APP_API_URL + path);
       if (error.response?.data) alert(error.response?.data.detail);
     }
   }

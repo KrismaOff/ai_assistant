@@ -9,7 +9,7 @@ import Banner from "../Banner/Banner";
 interface Chat {
   id: string;
   created_at: string;
-  thread_name: string;
+  first_message: string;
 }
 
 interface Props {
@@ -18,14 +18,11 @@ interface Props {
   onSelectChat?: (chatId: string) => void;
 }
 
-const SidebarForChats: React.FC<Props> = ({
-  chats,
-  onStartNewChat,
-  onSelectChat,
-}) => {
+const SidebarForChats: React.FC<Props> = ({ chats, onStartNewChat, onSelectChat }) => {
+
   return (
     <div className="chat-sidebar">
-      <Banner/>
+      <Banner />
 
       <div className="chat-sidebar-chats">
         <div className="chat-sidebar-newchat">
@@ -38,24 +35,26 @@ const SidebarForChats: React.FC<Props> = ({
         <div className="chat-list">
           <div className="chat-list-title">
             <h2>History</h2>
-            {/* <button>⋮</button> */}
           </div>
           <div className="chat-list-items-cont">
-          <ul id="chat-list-items">
-          {chats && chats.length > 0 ? (
-              chats.reverse().map((chat) => (
-                <li key={chat.id} onClick={() => onSelectChat(chat.id)}>
-                    <LocalPostOfficeIcon/>
-                  <p>{chat.thread_name}</p>
-                  <small>
-                    Создано: {new Date(chat.created_at).toLocaleString()}
-                  </small>
-                </li>
-              ))
-            ) : (
-              <li>У вас пока нет активных чатов.</li>
-            )}
-          </ul>
+            <ul id="chat-list-items">
+              {chats && chats.length > 0 ? (
+                chats.reverse().map((chat) => (
+                  <li key={chat.id} onClick={() => onSelectChat(chat.id)}>
+                    <div className="chat-list-items-name">
+                      <LocalPostOfficeIcon />
+                    <p>{chat.first_message}</p>
+                    </div>
+                    <small>
+                      {new Date(chat.created_at).toLocaleString().split(",")[0]}
+                    </small>
+                    {/* {chat.id} */}
+                  </li>
+                ))
+              ) : (
+                <li>У вас пока нет активных чатов.</li>
+              )}
+            </ul>
           </div>
         </div>
       </div>
