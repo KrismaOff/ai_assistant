@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { sendRequest } from "@/utils/sendRequest";
-import { tokenCheck } from "@/utils/tokenCheck";
+import { setToken, tokenCheck } from "@/utils/tokenCheck";
 
 import { FormData } from "@/types";
 import { ROUTES, buildPath } from "@/assets/data/paths";
@@ -24,18 +24,17 @@ export default function useHandleAuthResponse(path: string): [(data: FormData, t
 
     switch (type) {
       case REGISTER:
-        localStorage.setItem(tempToken, res.temp_token);
+        setToken(tempToken, res.temp_token); // localStorage.setItem(tempToken, res.temp_token);
         navigate(buildPath(AUTH.root, VERIFY));
         break;
       case LOGIN:
-        // localStorage.removeItem(tempToken);
-        localStorage.setItem(token, res.access_token);
+        setToken(token, res.access_token); // localStorage.setItem(token, res.access_token);
         navigate(buildPath(PROFILE.root));
         break;
       case VERIFY:
         alert(res.message);
         localStorage.removeItem(tempToken);
-        localStorage.setItem(token, res.access_token);
+        setToken(token, res.access_token); // localStorage.setItem(token, res.access_token);
         navigate(buildPath(PROFILE.root));
         break;
       case FORGOTPASSWORD.root:

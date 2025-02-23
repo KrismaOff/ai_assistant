@@ -13,7 +13,7 @@ export default function useHandleProfileRequest(path: string): ProfileDataInterf
             method: "get",
             path: path,
             token: tokenCheck(),
-            callback: (res: ProfileDataInterface) => setProfileData(res),
+            callback: (res: ProfileDataInterface) => setProfileData(res)
           });
     }, [path])
     

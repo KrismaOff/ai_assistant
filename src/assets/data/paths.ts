@@ -1,6 +1,7 @@
+// "homepage": "https://babu6hkaboy-lawgpt-react-ea1d.twc1.net",
 export const ROUTES = {
   HOME: {
-    root: "/ai_assistant",
+    root: "",
   },
   PROFILE: {
     root: "profile",
@@ -27,6 +28,7 @@ export const ROUTES = {
 
 export const buildPath = (root: string, ...children: string[]): string => {
   const sanitizedParts = [root, ...children].filter(Boolean);
+  // return `/${sanitizedParts.join("/")}`;
   return `${ROUTES.HOME.root}/${sanitizedParts.join("/")}`;
 };
 

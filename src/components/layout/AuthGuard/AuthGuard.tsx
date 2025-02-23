@@ -1,13 +1,17 @@
 import React from "react";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { ROUTES, buildPath } from "@/assets/data/paths";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import DevelopHeader from "@/components/layout/DevelopHeader/DevelopHeader";
 
 import { constats } from "@/assets/data/constants";
 
 const AuthGuard = () => {
 
+  const theme = createTheme();
+
   const { VERIFY, LOGIN, FORGOTPASSWORD } = ROUTES.AUTH.child
-  const { EMAIL, CODE } = FORGOTPASSWORD.child
+  const { CODE } = FORGOTPASSWORD.child
   const PROFILE = ROUTES.PROFILE.root
   const AUTH = ROUTES.AUTH.root
 
@@ -26,10 +30,10 @@ const AuthGuard = () => {
   };
 
   const authPages = extractStringsAndRoots(ROUTES.AUTH.child)
+  const allPages = extractStringsAndRoots(ROUTES).filter(val => val.length !== 0)
 
   const loginPath = buildPath(AUTH, LOGIN)
   const verifyPath = buildPath(AUTH, VERIFY)
-  // const emailPath = buildPath(AUTH, FORGOTPASSWORD.root, EMAIL)
   const codePath = buildPath(AUTH, FORGOTPASSWORD.root, CODE)
 
   const path = location.pathname.split('/').at(-1)
@@ -45,9 +49,15 @@ const AuthGuard = () => {
   // Forgot Password checks
   if (!resetPassword && path === CODE) return <Navigate to={PROFILE} replace />;
   if (resetPassword && path !== CODE) return <Navigate to={codePath} replace />;
-  
 
-  return <Outlet />;
+  if (!allPages.includes(path)) return <Navigate to={PROFILE} replace />;
+
+  return <div style={{textAlign: "center"}}>
+    <ThemeProvider theme={theme}>
+      {/* <DevelopHeader /> */}
+      <Outlet />
+    </ThemeProvider>
+  </div>
 };
 
 export default AuthGuard;

@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import App from "@/components/pages/App/App";
+// import App from "@/components/pages/App/App";
 import AuthForm from "@/components/pages/AuthForm/AuthForm";
 import VerifyForm from "@/components/pages/VerifyForm/VerifyForm";
 import Profile from "@/components/pages/Profile/Profile";
@@ -25,12 +25,12 @@ const {
 export const router = createBrowserRouter([
   {
     path: HOME.root,
-    element: <App />,
+    element: <AuthGuard />,
     errorElement: <div>404 - Not Found "{window.location.pathname}"</div>,
     children: [
-      {
-        element: <AuthGuard />,
-        children: [
+      // {
+        // element: <AuthGuard />,
+        // children: [
           {
             path: AUTH.root,
             children: [
@@ -75,8 +75,8 @@ export const router = createBrowserRouter([
               },
             ]
           },
-        ],
-      },
+        // ],
+      // },
     ],
   },
 ]);
