@@ -1,5 +1,5 @@
 {
-  "homepage": "./",
+  "homepage": "/",
   "name": "ai_assistant",
   "version": "0.1.0",
   "private": true,
@@ -14,9 +14,12 @@
     "crypto-js": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.0.0",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
-    "react-use-websocket": "^4.11.1"
+    "react-use-websocket": "^4.11.1",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1"
   },
   "scripts": {
     "start": "react-app-rewired start",

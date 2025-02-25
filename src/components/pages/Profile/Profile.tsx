@@ -72,8 +72,8 @@ const Profile = ({ type }: Props) => {
                 first
                 text="Мы в соц сетях"
                 links={[
-                  { href: "#", icon: telegramIcon, text: "" },
-                  { href: "#", icon: vkIcon, text: "" },
+                  { href: "https://t.me/Law_GPT ", icon: telegramIcon, text: "" },
+                  { href: "https://vk.ru/lawgptru", icon: vkIcon, text: "" },
                 ]}
                 radius={["15px 15px 0 0", "0"]}
               />

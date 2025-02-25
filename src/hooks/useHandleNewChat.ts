@@ -15,6 +15,7 @@ export default function useHandleProfileRequest() {
       path: "create_thread",
       token: tokenCheck(),
       callback: (res) => {
+        console.log("Новый чат создан - ", res.thread_id);
         setCurrentId(res.thread_id);
         setUpdate(false);
       },

@@ -20,6 +20,8 @@ interface Props {
 
 const SidebarForChats: React.FC<Props> = ({ chats, onStartNewChat, onSelectChat }) => {
 
+  // console.log(chats && chats.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()));
+
   return (
     <div className="chat-sidebar">
       <Banner />
@@ -45,10 +47,11 @@ const SidebarForChats: React.FC<Props> = ({ chats, onStartNewChat, onSelectChat 
                       <LocalPostOfficeIcon />
                     <p>{chat.first_message}</p>
                     </div>
+                    <div className="chat-list-items-data">
                     <small>
                       {new Date(chat.created_at).toLocaleString().split(",")[0]}
                     </small>
-                    {/* {chat.id} */}
+                    </div>
                   </li>
                 ))
               ) : (

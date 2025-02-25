@@ -14,13 +14,13 @@ import useRecieveAndSendMessages from "@/hooks/useRecieveAndSendMessages";
 import { isMobile } from "@/utils/isMobile";
 
 interface Props {
-  currentChat: string;
+  currentId: string;
   changePage: () => void;
   onStartNewChat: () => void;
 }
 
-export default function Chat({ changePage, currentChat, onStartNewChat }: Props) {
-  const { messages, setMessages, loading, setLoading, sendMessage } = useRecieveAndSendMessages(currentChat);
+export default function Chat({ changePage, currentId, onStartNewChat }: Props) {
+  const { messages, setMessages, loading, setLoading, sendMessage } = useRecieveAndSendMessages(currentId);
   const [inputValue, setInputValue] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -29,26 +29,40 @@ export default function Chat({ changePage, currentChat, onStartNewChat }: Props)
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSendMessage = () => {
+  useEffect(() => {
+    if (currentId && pendingMessage) {
+      sendMessage(pendingMessage.text, pendingMessage.file);
+      setPendingMessage(null); 
+    }
+  }, [currentId]);
+
+  const [pendingMessage, setPendingMessage] = useState<{ text: string; file: File | null } | null>(null);
+
+  const handleSendMessage = async () => {
     if (inputValue.trim()) {
-      setLoading(true)
-      if (!currentChat) onStartNewChat();
-      sendMessage(inputValue, selectedFile);
+      setLoading(true);
+      if (!currentId) {
+        onStartNewChat(); 
+        setPendingMessage({ text: inputValue, file: selectedFile }); 
+      } else {
+        sendMessage(inputValue, selectedFile); 
+      }
+  
       setMessages((prev) => [
         ...(prev || []),
-        { role: "user", content: inputValue, created_at: new Date().toISOString() },
-        { role: "assistant", content: "", created_at: new Date().toISOString(), waiting: true }
+        { role: "user", content: inputValue, created_at: new Date().toISOString(), id: "userWaiting" },
+        { role: "assistant", content: "", created_at: new Date().toISOString(), waiting: true, id: "assistantWaiting" }
       ]);
+  
       setInputValue("");
       setSelectedFile(null);
     } else {
       alert("Перед отправкой введите сообщение!");
     }
   };
-
   return (
     <div className="chat-container" id="chat-container">
-      Текущий чат: {currentChat}
+      Текущий чат: {currentId}
       <header>
         {isMobile && (
           <div onClick={changePage}>

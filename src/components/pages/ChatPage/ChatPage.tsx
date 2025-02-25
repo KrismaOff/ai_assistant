@@ -53,7 +53,7 @@ export default function ChatPage() {
         />
       )}
       {compVis.chat && (
-        <Chat changePage={changePageMob} currentChat={currentId} onStartNewChat={onStartNewChat} />
+        <Chat changePage={changePageMob} currentId={currentId} onStartNewChat={onStartNewChat} />
       )}
     </div>
   );

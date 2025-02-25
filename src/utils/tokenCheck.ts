@@ -9,7 +9,7 @@ const SECRET_KEY = generateSecretKey();
 export const setToken = (id: string, token: string) => {
   try {    
     const encryptedToken = CryptoJS.AES.encrypt(token, SECRET_KEY).toString();
-    console.log(SECRET_KEY, encryptedToken, token);
+    // console.log(SECRET_KEY, encryptedToken, token);
     localStorage.setItem(id, encryptedToken);
   } catch (error) {
     console.error("error token - ", error);

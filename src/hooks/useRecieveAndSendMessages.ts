@@ -10,6 +10,7 @@ export default function useRecieveAndSendMessages(currentId: string) {
     created_at: string;
     document_download_url?: "string";
     waiting?: boolean;
+    id? : "userWaiting" | "assistantWaiting";
   }
 
   // interface MessageRequestWithoutFile {
@@ -21,7 +22,8 @@ export default function useRecieveAndSendMessages(currentId: string) {
   //   file_name?: string,
   //   file_path?: string
   // }
-
+  
+  const [chat, setChat] = useState(currentId)
   const [messages, setMessages] = useState<MessagesGet[]>();
   const [loading, setLoading] = useState(false);
 
@@ -29,8 +31,12 @@ export default function useRecieveAndSendMessages(currentId: string) {
     const resultData = new FormData();
     resultData.append("query", data);
     file && resultData.append("file", file);
-    
     if (currentId)
+      console.log("Данные отправлены - ", {
+        method: "post",
+        path: `chat/${currentId}`,
+        token: tokenCheck(),
+      });
       sendRequest({
         method: "post",
         path: `chat/${currentId}`,
@@ -55,19 +61,22 @@ export default function useRecieveAndSendMessages(currentId: string) {
   };
 
   useEffect(() => {
-    if (currentId)
+    if (currentId && !loading) {
+      if (chat && chat !== currentId) {
+        setMessages([])
+        setChat(currentId)
+      }
       sendRequest({
         method: "get",
         path: `messages/${currentId}`,
         token: tokenCheck(),
         callback: (res) => {
-          setMessages((prevMessages) => [
-            ...(prevMessages || []),
-            ...(Array.isArray(res.messages) ? res.messages : []),
-          ]);
+          console.log("Данные получены - ", res);
+          setMessages(res.messages);
         },
       });
-  }, [currentId]);
+    }
+  }, [currentId, loading]);
 
   return { messages, setMessages, loading, setLoading, sendMessage };
 }

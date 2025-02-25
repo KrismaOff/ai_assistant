@@ -80,6 +80,12 @@
     cursor: pointer;
     text-align: left;
   }
+  
+  .chat-list-items-data {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 
   #chat-list-items small {
     color: #ffffff7a;
